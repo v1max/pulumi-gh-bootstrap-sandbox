@@ -1,0 +1,5 @@
+encryptionsalt: v1:5uXxjIN4t0s=:v1:eZYa5l5VuZ6EhOjV:PaBgxVgEiqVNGeC/rqtu31lL+ApDyw==
+config:
+  github:owner: v1max
+  github-repo:visibility: public
+  github-repo:description: Throwaway sandbox for testing a Pulumi-managed gitflow bootstrap (safe to delete)
