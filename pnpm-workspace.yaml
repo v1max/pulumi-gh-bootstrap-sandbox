@@ -1,0 +1,4 @@
+packages:
+  - infra/*
+allowBuilds:
+  protobufjs: false

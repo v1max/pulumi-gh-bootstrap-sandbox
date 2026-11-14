@@ -1,0 +1,16 @@
+{
+  "name": "infra-github",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@pulumi/github": "6.15.1",
+    "@pulumi/pulumi": "3.276.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26",
+    "typescript": "^6.0.3"
+  }
+}
