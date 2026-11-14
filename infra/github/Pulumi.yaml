@@ -1,0 +1,7 @@
+name: github-repo
+description: Declarative settings for this GitHub repository (branches, merge rules, rulesets)
+runtime:
+  name: nodejs
+  options:
+    packagemanager: pnpm
+requiredPulumiVersion: ">=3.276.0 <4.0.0"
