@@ -12,11 +12,21 @@ jobs:
   conventional-commits:
     runs-on: ubuntu-latest
     steps:
-      - name: Only stg (release) or hotfix/* may target main
-        if: github.base_ref == 'main' && github.head_ref != 'stg' && !startsWith(github.head_ref, 'hotfix/')
+      - name: Gitflow policy for PRs into main
+        if: github.base_ref == 'main'
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
-          echo "::error::PRs into main must come from stg or hotfix/*, not '${GITHUB_HEAD_REF}'."
-          exit 1
+          case "$HEAD_REF" in
+            stg | hotfix/*) ;;
+            *) echo "::error::PRs into main must come from stg or hotfix/*, not '$HEAD_REF'."; exit 1 ;;
+          esac
+          # The merge commit is a release marker; the changes inside it are already conventional commits.
+          case "$PR_TITLE" in
+            "chore(release): "*) ;;
+            *) echo "::error::PRs into main are releases; title them 'chore(release): <summary>'."; exit 1 ;;
+          esac
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
